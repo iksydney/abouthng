@@ -1,11 +1,8 @@
 const express = require('express');
-const http = require('http');
-const hostname = '0.0.0.0'
 const app = express();
 
 const router = express.Router();
 
-const port = 3000;
 const cors = require('cors');
 
 const about = [
@@ -27,18 +24,11 @@ app.get('/', (req, res) => {
 });
 
 
-// app.get('/users',(req, res)=> {
-//     res.send(about);
-// })
-
-const server = http.createServer((req, res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/json');
-    res.end(about);
-});
-//const port = process.env.PORT || 3000;
-
-server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`)
+app.get('/users',(req, res)=> {
+    res.send(about);
 })
-//app.listen(port, () => console.log(`Listening on Port ${port}`));
+
+
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => console.log(`Listening on Port ${port}`));
